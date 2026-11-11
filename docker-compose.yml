@@ -1,0 +1,18 @@
+
+services:
+  api:
+    build: .
+    container_name: task-management-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: sqlite:////app/data/tasks.db
+    volumes:
+      - task_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  task_data:
+
